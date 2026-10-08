@@ -8,6 +8,9 @@ RewriteCond %{SERVER_PORT} 80 [OR]
 RewriteCond %{HTTP_HOST} !^ceramodent\.fr$ [NC]
 RewriteRule ^(.*)$ https://ceramodent.fr/$1 [R=301,L]
 
+# Page « introuvable » du site (et non celle d'OVH)
+ErrorDocument 404 /404.html
+
 # Dépôt Git d'OVH (dossier .git) : jamais accessible
 RedirectMatch 404 /\.git
 

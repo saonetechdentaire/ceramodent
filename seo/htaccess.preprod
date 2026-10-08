@@ -1,5 +1,6 @@
 # Préprod (pre.ceramodent.fr) : invisible des moteurs de recherche.
 Options -Indexes
+ErrorDocument 404 /404.html
 RedirectMatch 404 /\.git
 
 <IfModule mod_headers.c>

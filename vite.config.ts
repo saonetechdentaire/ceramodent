@@ -1,5 +1,5 @@
 /**
- * Site public de Ceramodent (ceramodent.fr) : deux pages HTML statiques (référencement), sans framework.
+ * Site public de Céramodent (ceramodent.fr) : pages HTML statiques (référencement), sans framework.
  *  - npm run dev   → http://localhost:5190 (le formulaire est relayé vers l'API du dashboard lancée en local, port 4000)
  *  - npm run build → dist/ (vérifie qu'il ne reste aucune information « À compléter »)
  * La publication sur l'hébergement OVH passe par GitHub : voir .github/workflows/site.yml et README.md.
@@ -16,7 +16,14 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      input: { index: here("index.html"), legal: here("mentions-legales.html") },
+      input: {
+        index: here("index.html"),
+        fixe: here("prothese-fixe.html"),
+        amovible: here("prothese-amovible.html"),
+        implantaire: here("prothese-implantaire.html"),
+        legal: here("mentions-legales.html"),
+        notFound: here("404.html"),
+      },
     },
   },
 });

@@ -1,30 +1,33 @@
-# Site public de Ceramodent (hébergement OVH) — seul le résultat compilé est publié, jamais le code source.
-# À chaque push sur main :
-#   1. compile le site (npm run build) ;
-#   2. branche « pre-prod » → pre.ceramodent.fr : publiée à chaque fois, même avec des « À compléter »,
-#      invisible des moteurs de recherche (robots.txt + en-tête noindex) ;
-#   3. branche « site-public » → ceramodent.fr : publiée seulement s'il ne reste AUCUN « À compléter ».
+# Site public de Céramodent (hébergement OVH) — seul le résultat compilé est publié, jamais le code source.
+#   git push origin main       → préprod : branche « pre-prod » → pre.ceramodent.fr, même avec des « À compléter »,
+#                                invisible des moteurs de recherche (robots.txt + en-tête noindex) ;
+#   git push origin main:prod  → production, quand on le décide : branche « site-public » → ceramodent.fr,
+#                                seulement s'il ne reste AUCUN « À compléter », et après approbation sur GitHub
+#                                (environnement « production », voir README).
 # Côté OVH (Hébergement → Git), chaque site suit SA branche : jamais « main » (le code source serait en ligne).
 # Chaque version est ajoutée À LA SUITE de la précédente (pas de « push --force ») : OVH met à jour son dossier
 # par « git pull », qui refuse une branche réécrite (« refusing to merge unrelated histories »).
 
-name: Site Ceramodent
+name: Site Céramodent
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    branches: [main, prod]
+  workflow_dispatch: # bouton « Run workflow » dans l'onglet Actions : main = préprod, prod = production
 
 permissions:
   contents: write # pousser les branches pre-prod et site-public
 
 concurrency:
-  group: site
+  group: site-${{ github.ref_name }}
   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Environnement GitHub (Settings → Environments) : « production » demande l'approbation d'un responsable
+    # avant de publier ceramodent.fr, même si quelqu'un d'autre pousse sur prod. La préprod part sans attendre.
+    environment: ${{ github.ref_name == 'prod' && 'production' || 'preprod' }}
     env:
       REPO_URL: https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
       BOT_NAME: github-actions[bot]
@@ -68,6 +71,7 @@ jobs:
           SH
 
       - name: Préprod → branche pre-prod
+        if: github.ref_name == 'main'
         run: |
           cp -R dist "$RUNNER_TEMP/preprod"
           cp seo/htaccess.preprod "$RUNNER_TEMP/preprod/.htaccess"
@@ -76,9 +80,11 @@ jobs:
           bash "$RUNNER_TEMP/publish.sh" pre-prod "$RUNNER_TEMP/preprod" "Préprod – ${GITHUB_SHA::7}"
 
       - name: Vérification avant production (bloque s'il reste des « À compléter »)
+        if: github.ref_name == 'prod'
         run: node scripts/check-site.mjs
         env:
           STRICT: "1"
 
       - name: Production → branche site-public
+        if: github.ref_name == 'prod'
         run: bash "$RUNNER_TEMP/publish.sh" site-public "$PWD/dist" "Site public – ${GITHUB_SHA::7}"

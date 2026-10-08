@@ -713,3 +713,89 @@ img {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ---------- Pages des travaux (fixe, amovible, implantaire) ---------- */
+
+.hero--page .hero__inner {
+  padding-block: clamp(3rem, 8vw, 6rem);
+}
+.hero--page h1,
+.hero--page .hero__lead {
+  max-width: min(15ch, 62%);
+}
+.hero--page h1 {
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+}
+.hero--page .hero__lead {
+  max-width: min(44ch, 62%);
+}
+@media (max-width: 760px) {
+  .hero--page h1,
+  .hero--page .hero__lead {
+    max-width: none;
+  }
+  /* Le porte-empreinte reste au-dessus du titre, comme sur l'accueil */
+  .hero--page .hero__inner {
+    padding-top: 12rem;
+  }
+}
+/* Intitulés plus longs que sur l'accueil : un cran plus petits */
+.hero--page ~ .section .row h3 {
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+}
+.crumbs {
+  margin-bottom: 1.25rem;
+  color: rgb(254 255 233 / 75%);
+  font: 600 1rem var(--title);
+}
+.crumbs a {
+  color: var(--cream);
+}
+.row h3 a {
+  text-decoration: none;
+}
+.row h3 a::after {
+  content: " →";
+  color: var(--orange-2);
+}
+.row h3 a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+.top__nav > a[aria-current="page"] {
+  color: var(--blue);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+.checklist {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+.checklist li {
+  padding-top: 0.9rem;
+  border-top: 2px solid var(--ink);
+}
+.section--orange a {
+  font-weight: 600;
+}
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem 2rem;
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgb(254 255 233 / 35%);
+}
+.more p {
+  margin: 0;
+  color: rgb(254 255 233 / 75%);
+}
+.foot nav {
+  flex-wrap: wrap;
+}
