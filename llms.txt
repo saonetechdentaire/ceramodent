@@ -9,7 +9,7 @@ Céramodent est dirigé par M. Ossari, prothésiste dentaire depuis plus de 30 a
 ## Coordonnées
 
 - Nom : Céramodent (CERAMODENT SAS, SIREN 504 928 615)
-- Dirigeant : M. Ossari, prothésiste dentaire (plus de 30 ans d'expérience)
+- Dirigeant : Mostafa Ossari, prothésiste dentaire (plus de 30 ans d'expérience)
 - Adresse : 3 rue de la Salamandre, 69220 Belleville-en-Beaujolais, France
 - Téléphone : 04 74 07 94 47 (+33 4 74 07 94 47)
 - E-mail : contact@ceramodent.fr
@@ -35,4 +35,7 @@ Céramodent est dirigé par M. Ossari, prothésiste dentaire depuis plus de 30 a
 ## Pages
 
 - [Accueil](https://ceramodent.fr/) : le laboratoire, travaux, empreintes, secteur, questions fréquentes, contact
+- [Prothèse fixe](https://ceramodent.fr/prothese-fixe.html) : couronnes et bridges zircone, céramique, céramo-métallique, inlays, onlays, facettes
+- [Prothèse amovible](https://ceramodent.fr/prothese-amovible.html) : stellites, complets, partiels, réparations, rebasages, gouttières
+- [Prothèse implantaire](https://ceramodent.fr/prothese-implantaire.html) : couronnes et bridges sur implants, piliers personnalisés
 - [Mentions légales](https://ceramodent.fr/mentions-legales.html)
