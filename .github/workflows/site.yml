@@ -1,0 +1,84 @@
+# Site public de Ceramodent (hébergement OVH) — seul le résultat compilé est publié, jamais le code source.
+# À chaque push sur main :
+#   1. compile le site (npm run build) ;
+#   2. branche « pre-prod » → pre.ceramodent.fr : publiée à chaque fois, même avec des « À compléter »,
+#      invisible des moteurs de recherche (robots.txt + en-tête noindex) ;
+#   3. branche « site-public » → ceramodent.fr : publiée seulement s'il ne reste AUCUN « À compléter ».
+# Côté OVH (Hébergement → Git), chaque site suit SA branche : jamais « main » (le code source serait en ligne).
+# Chaque version est ajoutée À LA SUITE de la précédente (pas de « push --force ») : OVH met à jour son dossier
+# par « git pull », qui refuse une branche réécrite (« refusing to merge unrelated histories »).
+
+name: Site Ceramodent
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write # pousser les branches pre-prod et site-public
+
+concurrency:
+  group: site
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      REPO_URL: https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+      BOT_NAME: github-actions[bot]
+      BOT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Dépendances
+        run: npm ci --no-audit --no-fund
+
+      - name: Compilation
+        run: npm run build
+
+      # publish <branche> <dossier compilé> <message> : récupère la branche (si elle existe), remplace son contenu
+      # par le dossier compilé et ajoute un commit par-dessus. Rien n'est poussé si le site n'a pas changé.
+      - name: Outil de publication
+        run: |
+          cat > "$RUNNER_TEMP/publish.sh" <<'SH'
+          set -euo pipefail
+          branch="$1"; src="$2"; message="$3"; work="$RUNNER_TEMP/publish-$branch"
+          rm -rf "$work"
+          # Branche existante : on repart de sa dernière version (échec = arrêt, jamais de réécriture silencieuse)
+          if git ls-remote --exit-code --heads "$REPO_URL" "$branch" >/dev/null; then
+            git clone -q --depth 1 --branch "$branch" "$REPO_URL" "$work"
+          else
+            git init -q -b "$branch" "$work"
+          fi
+          find "$work" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -R "$src"/. "$work"/
+          cd "$work"
+          git add -A
+          if git diff --cached --quiet; then echo "Rien de nouveau sur $branch"; exit 0; fi
+          git -c user.name="$BOT_NAME" -c user.email="$BOT_EMAIL" commit -q -m "$message"
+          git push -q "$REPO_URL" "HEAD:$branch"
+          echo "✔ $branch publiée ($(git ls-files | wc -l) fichiers)"
+          SH
+
+      - name: Préprod → branche pre-prod
+        run: |
+          cp -R dist "$RUNNER_TEMP/preprod"
+          cp seo/htaccess.preprod "$RUNNER_TEMP/preprod/.htaccess"
+          cp seo/robots.preprod.txt "$RUNNER_TEMP/preprod/robots.txt"
+          rm -f "$RUNNER_TEMP/preprod/sitemap.xml"
+          bash "$RUNNER_TEMP/publish.sh" pre-prod "$RUNNER_TEMP/preprod" "Préprod – ${GITHUB_SHA::7}"
+
+      - name: Vérification avant production (bloque s'il reste des « À compléter »)
+        run: node scripts/check-site.mjs
+        env:
+          STRICT: "1"
+
+      - name: Production → branche site-public
+        run: bash "$RUNNER_TEMP/publish.sh" site-public "$PWD/dist" "Site public – ${GITHUB_SHA::7}"
