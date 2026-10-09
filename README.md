@@ -1,7 +1,7 @@
 # Ceramodent — site public (ceramodent.fr)
 
 Site vitrine du laboratoire de prothèse dentaire Ceramodent (Belleville-en-Beaujolais) : deux pages HTML
-statiques (accueil, mentions légales), sans cookie. Le formulaire de demande envoie à l'API du dashboard du labo (prod.tech-dentaire.fr, voir src/form.ts) : `https://ceramodent.fr` et `https://pre.ceramodent.fr` doivent figurer dans `SITE_ORIGINS` (api/.env du VPS). Vite + TypeScript. Identité selon la charte graphique (STD/Ceramodent/Ceramodent.pdf) : bleu #3535A8, orange #FF7A00, crème #FEFFE9 ; titres en Bricolage Grotesque, textes en Barlow Semi Condensed (à la place de Loos Condensed, police payante).
+statiques. Mesure d'audience (GTM GTM-N95BFSZ9 → GA4) seulement après consentement, voir src/consent.ts et src/tracking.ts. Le formulaire de demande envoie à l'API du dashboard du labo (prod.tech-dentaire.fr, voir src/form.ts) : `https://ceramodent.fr` et `https://pre.ceramodent.fr` doivent figurer dans `SITE_ORIGINS` (api/.env du VPS). Vite + TypeScript. Identité selon la charte graphique (STD/Ceramodent/Ceramodent.pdf) : bleu #3535A8, orange #FF7A00, crème #FEFFE9 ; titres en Bricolage Grotesque, textes en Barlow Semi Condensed (à la place de Loos Condensed, police payante).
 
 ```
 index.html               Accueil (contenu + données structurées LocalBusiness / WebSite / FAQPage)

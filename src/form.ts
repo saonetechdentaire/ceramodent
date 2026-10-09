@@ -4,6 +4,8 @@
  * L'adresse de l'API vient de .env.production ; en local, Vite relaie /api vers l'API lancée sur le port 4000.
  * Côté serveur, ceramodent.fr doit figurer dans SITE_ORIGINS (api/.env du VPS), sinon le navigateur bloque l'envoi.
  */
+import { track } from "./consent.ts";
+
 const API_URL = (import.meta.env.VITE_API_URL as string | undefined) ?? "";
 
 const form = document.getElementById("devis-form") as HTMLFormElement | null;
@@ -32,9 +34,12 @@ form?.addEventListener("submit", async (e) => {
     const data = (await res.json().catch(() => null)) as { error?: string } | null;
     if (res.status === 429) throw new Error("Trop de demandes envoyées depuis cette connexion. Réessayez plus tard ou appelez-nous.");
     if (!res.ok) throw new Error(data?.error ?? "L'envoi a échoué. Réessayez ou appelez-nous.");
+    // Conversion principale du site (mesurée seulement après consentement). La profession n'identifie personne.
+    track("generate_lead", { form: "contact", profession: String(new FormData(form).get("profession") ?? "") });
     form.reset();
     show("Merci, votre demande est bien arrivée au laboratoire. Nous vous rappelons rapidement.", "ok");
   } catch (err) {
+    track("form_error", { reason: err instanceof TypeError ? "connexion" : "refus" });
     // Le numéro affiché dans la section contact, pour ne le tenir qu'à un endroit
     const phone = document.querySelector(".contact__phone")?.textContent?.trim();
     show(
