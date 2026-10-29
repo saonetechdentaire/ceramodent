@@ -414,6 +414,15 @@ img {
 .contact__mail:hover {
   color: var(--orange);
 }
+.contact__wa {
+  grid-column: 1;
+  justify-self: start;
+  margin-top: 0.4rem;
+  font-size: 1.1rem;
+}
+.contact__wa:hover {
+  color: var(--orange);
+}
 .contact__place {
   grid-column: 2;
   grid-row: 1 / span 2;

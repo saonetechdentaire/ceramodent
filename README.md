@@ -1,11 +1,13 @@
 # Ceramodent — site public (ceramodent.fr)
 
 Site vitrine du laboratoire de prothèse dentaire Ceramodent (Belleville-en-Beaujolais) : deux pages HTML
-statiques. Mesure d'audience (GTM GTM-N95BFSZ9 → GA4) seulement après consentement, voir src/consent.ts et src/tracking.ts. Le formulaire de demande envoie à l'API du dashboard du labo (prod.tech-dentaire.fr, voir src/form.ts) : `https://ceramodent.fr` et `https://pre.ceramodent.fr` doivent figurer dans `SITE_ORIGINS` (api/.env du VPS). Vite + TypeScript. Identité selon la charte graphique (STD/Ceramodent/Ceramodent.pdf) : bleu #3535A8, orange #FF7A00, crème #FEFFE9 ; titres en Bricolage Grotesque, textes en Barlow Semi Condensed (à la place de Loos Condensed, police payante).
+statiques. Toute nouvelle page : à ajouter dans vite.config.ts, public/sitemap.xml et public/llms.txt. Mesure d'audience (GTM GTM-N95BFSZ9 → GA4) seulement après consentement, voir src/consent.ts et src/tracking.ts. Le formulaire de demande envoie à l'API du dashboard du labo (prod.tech-dentaire.fr, voir src/form.ts) : `https://ceramodent.fr` et `https://pre.ceramodent.fr` doivent figurer dans `SITE_ORIGINS` (api/.env du VPS). Vite + TypeScript. Identité selon la charte graphique (STD/Ceramodent/Ceramodent.pdf) : bleu #3535A8, orange #FF7A00, crème #FEFFE9 ; titres en Bricolage Grotesque, textes en Barlow Semi Condensed (à la place de Loos Condensed, police payante).
 
 ```
 index.html               Accueil (contenu + données structurées LocalBusiness / WebSite / FAQPage)
-prothese-*.html          Pages fixe, amovible, implantaire (Service + fil d'Ariane)
+prothese-*.html          Pages fixe, amovible, implantaire (Service + fil d'Ariane + questions)
+empreintes-numeriques.html  Scanners acceptés, premier cas numérique
+laboratoire-prothese-dentaire-*.html  Pages Villefranche-sur-Saône et Mâcon (secteur)
 404.html                 Page « introuvable » (ErrorDocument du .htaccess)
 mentions-legales.html    Mentions légales
 src/                     Styles, formulaire de demande (form.ts), année du pied de page

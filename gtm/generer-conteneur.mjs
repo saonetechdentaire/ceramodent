@@ -16,6 +16,7 @@ const EVENTS = {
   generate_lead: ["form", "profession"],
   phone_click: ["link_location"],
   email_click: ["link_location"],
+  whatsapp_click: ["link_location"],
   form_error: ["reason"],
   directions_click: ["link_location"],
   cta_click: ["cta", "link_location"],

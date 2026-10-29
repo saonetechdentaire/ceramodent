@@ -2,7 +2,7 @@
  * Plan de marquage de ceramodent.fr : les actions qui comptent pour le labo, poussées dans le dataLayer de
  * Google Tag Manager via track() (donc seulement après consentement, voir consent.ts). Dans GTM, chaque nom
  * d'événement a un déclencheur « Événement personnalisé » et une balise « Événement GA4 » (voir gtm/).
- * Une seule écoute des clics pour toute la page : tout lien tel:, mailto:, d'itinéraire ou vers le formulaire
+ * Une seule écoute des clics pour toute la page : tout lien tel:, mailto:, WhatsApp, d'itinéraire ou vers le formulaire
  * est mesuré, où qu'il soit ajouté.
  *
  * | Événement        | Quand                                         | Paramètres                    | Conversion |
@@ -10,6 +10,7 @@
  * | generate_lead    | demande envoyée avec succès (form.ts)         | form, profession              | oui        |
  * | phone_click      | clic sur un numéro de téléphone               | link_location                 | oui        |
  * | email_click      | clic sur une adresse e-mail                   | link_location                 | oui        |
+ * | whatsapp_click   | clic sur un lien WhatsApp (wa.me)             | link_location                 | oui        |
  * | form_error       | envoi refusé ou connexion impossible (form.ts)| reason                        |            |
  * | directions_click | clic sur « Itinéraire »                       | link_location                 |            |
  * | cta_click        | clic sur « Confier un cas », « Contact »…     | cta, link_location            |            |
@@ -36,6 +37,7 @@ export function initTracking() {
     const link_location = locationOf(link);
     if (href.startsWith("tel:")) track("phone_click", { link_location });
     else if (href.startsWith("mailto:")) track("email_click", { link_location });
+    else if (href.startsWith("https://wa.me/")) track("whatsapp_click", { link_location });
     else if (/google\.[a-z.]+\/maps/.test(href)) track("directions_click", { link_location });
     else if (/^\/?#contact$/.test(href)) track("cta_click", { cta: link.textContent?.trim() ?? "contact", link_location });
   });

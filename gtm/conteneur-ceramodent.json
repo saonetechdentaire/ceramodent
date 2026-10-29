@@ -1,6 +1,6 @@
 {
   "exportFormatVersion": 2,
-  "exportTime": "2026-10-09 06:38:44",
+  "exportTime": "2026-10-15 09:00:04",
   "containerVersion": {
     "path": "accounts/0/containers/0/versions/0",
     "accountId": "0",
@@ -282,6 +282,62 @@
         "containerId": "0",
         "fingerprint": "0",
         "tagId": "5",
+        "name": "GA4 – whatsapp_click",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "eventName",
+            "value": "whatsapp_click"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "measurementIdOverride",
+            "value": "G-MT76QSWKP9"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "sendEcommerceData",
+            "value": "false"
+          },
+          {
+            "type": "LIST",
+            "key": "eventSettingsTable",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameter",
+                    "value": "link_location"
+                  },
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameterValue",
+                    "value": "{{DLV - link_location}}"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "firingTriggerId": [
+          "5"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "fingerprint": "0",
+        "tagId": "6",
         "name": "GA4 – form_error",
         "type": "gaawe",
         "parameter": [
@@ -323,7 +379,7 @@
           }
         ],
         "firingTriggerId": [
-          "5"
+          "6"
         ],
         "tagFiringOption": "ONCE_PER_EVENT",
         "monitoringMetadata": {
@@ -337,7 +393,7 @@
         "accountId": "0",
         "containerId": "0",
         "fingerprint": "0",
-        "tagId": "6",
+        "tagId": "7",
         "name": "GA4 – directions_click",
         "type": "gaawe",
         "parameter": [
@@ -379,7 +435,7 @@
           }
         ],
         "firingTriggerId": [
-          "6"
+          "7"
         ],
         "tagFiringOption": "ONCE_PER_EVENT",
         "monitoringMetadata": {
@@ -393,7 +449,7 @@
         "accountId": "0",
         "containerId": "0",
         "fingerprint": "0",
-        "tagId": "7",
+        "tagId": "8",
         "name": "GA4 – cta_click",
         "type": "gaawe",
         "parameter": [
@@ -450,7 +506,7 @@
           }
         ],
         "firingTriggerId": [
-          "7"
+          "8"
         ],
         "tagFiringOption": "ONCE_PER_EVENT",
         "monitoringMetadata": {
@@ -464,7 +520,7 @@
         "accountId": "0",
         "containerId": "0",
         "fingerprint": "0",
-        "tagId": "8",
+        "tagId": "9",
         "name": "GA4 – faq_open",
         "type": "gaawe",
         "parameter": [
@@ -506,7 +562,7 @@
           }
         ],
         "firingTriggerId": [
-          "8"
+          "9"
         ],
         "tagFiringOption": "ONCE_PER_EVENT",
         "monitoringMetadata": {
@@ -520,7 +576,7 @@
         "accountId": "0",
         "containerId": "0",
         "fingerprint": "0",
-        "tagId": "9",
+        "tagId": "10",
         "name": "GA4 – service_view",
         "type": "gaawe",
         "parameter": [
@@ -562,7 +618,7 @@
           }
         ],
         "firingTriggerId": [
-          "9"
+          "10"
         ],
         "tagFiringOption": "ONCE_PER_EVENT",
         "monitoringMetadata": {
@@ -730,6 +786,48 @@
         "containerId": "0",
         "fingerprint": "0",
         "triggerId": "5",
+        "name": "Événement – whatsapp_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "whatsapp_click"
+              }
+            ]
+          }
+        ],
+        "filter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{Page Hostname}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "ceramodent.fr"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "fingerprint": "0",
+        "triggerId": "6",
         "name": "Événement – form_error",
         "type": "CUSTOM_EVENT",
         "customEventFilter": [
@@ -771,7 +869,7 @@
         "accountId": "0",
         "containerId": "0",
         "fingerprint": "0",
-        "triggerId": "6",
+        "triggerId": "7",
         "name": "Événement – directions_click",
         "type": "CUSTOM_EVENT",
         "customEventFilter": [
@@ -813,7 +911,7 @@
         "accountId": "0",
         "containerId": "0",
         "fingerprint": "0",
-        "triggerId": "7",
+        "triggerId": "8",
         "name": "Événement – cta_click",
         "type": "CUSTOM_EVENT",
         "customEventFilter": [
@@ -855,7 +953,7 @@
         "accountId": "0",
         "containerId": "0",
         "fingerprint": "0",
-        "triggerId": "8",
+        "triggerId": "9",
         "name": "Événement – faq_open",
         "type": "CUSTOM_EVENT",
         "customEventFilter": [
@@ -897,7 +995,7 @@
         "accountId": "0",
         "containerId": "0",
         "fingerprint": "0",
-        "triggerId": "9",
+        "triggerId": "10",
         "name": "Événement – service_view",
         "type": "CUSTOM_EVENT",
         "customEventFilter": [
