@@ -18,6 +18,7 @@ RedirectMatch 404 /\.git
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Strict-Transport-Security "max-age=31536000"
 
   # Fichiers compilés (nom unique à chaque version) : cache long. Pages HTML : toujours revalidées.
   <FilesMatch "\.(js|css|woff2)$">
