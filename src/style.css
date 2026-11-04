@@ -186,8 +186,17 @@ img {
   text-decoration-thickness: 2px;
   text-underline-offset: 0.3em;
 }
-@media (max-width: 760px) {
-  .top__nav > a:not(.btn) {
+.top__nav > a.top__scan {
+  color: var(--blue);
+}
+/* Le menu complet demande de la place : « Empreintes numériques » reste visible le plus longtemps. */
+@media (max-width: 960px) {
+  .top__nav > a:not(.btn):not(.top__scan) {
+    display: none;
+  }
+}
+@media (max-width: 560px) {
+  .top__nav > a.top__scan {
     display: none;
   }
 }
