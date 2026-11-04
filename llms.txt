@@ -12,6 +12,7 @@ Céramodent est dirigé par M. Ossari, prothésiste dentaire depuis plus de 30 a
 - Dirigeant : Mostafa Ossari, prothésiste dentaire (plus de 30 ans d'expérience)
 - Adresse : 3 rue de la Salamandre, 69220 Belleville-en-Beaujolais, France
 - Téléphone : 04 74 07 94 47 (+33 4 74 07 94 47)
+- Horaires : du lundi au vendredi, de 8 h à 18 h
 - E-mail : contact@ceramodent.fr
 - Site : https://ceramodent.fr/
 - Laboratoire lié, près de Lyon : Saône Tech Dentaire (https://tech-dentaire.fr/)
@@ -46,3 +47,6 @@ Céramodent est dirigé par M. Ossari, prothésiste dentaire depuis plus de 30 a
 - [Stellites](https://ceramodent.fr/stellite.html) : châssis métalliques, essayage, réparations
 - [Cabinets du Val de Saône, côté Ain](https://ceramodent.fr/laboratoire-prothese-dentaire-val-de-saone-ain.html)
 - [Mentions légales](https://ceramodent.fr/mentions-legales.html)
+- [Le laboratoire](https://ceramodent.fr/le-laboratoire.html)
+- [Guide : scan intra-oral avant envoi](https://ceramodent.fr/guide-scan-intra-oral.html)
+- [Guide : réparer, rebaser ou refaire une prothèse amovible](https://ceramodent.fr/guide-reparation-prothese-amovible.html)
