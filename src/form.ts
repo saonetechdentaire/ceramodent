@@ -19,6 +19,25 @@ function show(message: string, tone: "ok" | "error") {
   status.hidden = false;
 }
 
+// Jeton anti-robots : demandé dès que le visiteur commence à remplir (l'API vérifie qu'il ne remplit pas en 3 s)
+let token: Promise<string> | null = null;
+const getToken = () =>
+  (token ??= fetch(`${API_URL}/api/contact/token`)
+    .then((r) => (r.ok ? (r.json() as Promise<{ token: string }>) : { token: "" }))
+    .then((d) => d.token)
+    .catch(() => ""));
+form?.addEventListener("focusin", () => void getToken(), { once: true });
+// …ou dès que le formulaire apparaît à l’écran : un visiteur met toujours plus de 3 s à le remplir
+if (form && "IntersectionObserver" in window) {
+  const seen = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      seen.disconnect();
+      void getToken();
+    }
+  });
+  seen.observe(form);
+}
+
 form?.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (!form.reportValidity() || !button) return;
@@ -29,7 +48,7 @@ form?.addEventListener("submit", async (e) => {
     const res = await fetch(`${API_URL}/api/contact`, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      body: JSON.stringify({ ...Object.fromEntries(new FormData(form)), token: await getToken() }),
     });
     const data = (await res.json().catch(() => null)) as { error?: string } | null;
     if (res.status === 429) throw new Error("Trop de demandes envoyées depuis cette connexion. Réessayez plus tard ou appelez-nous.");
@@ -37,6 +56,7 @@ form?.addEventListener("submit", async (e) => {
     // Conversion principale du site (mesurée seulement après consentement). La profession n'identifie personne.
     track("generate_lead", { form: "contact", profession: String(new FormData(form).get("profession") ?? "") });
     form.reset();
+    token = null; // un jeton par demande
     show("Merci, votre demande est bien arrivée au laboratoire. Nous vous rappelons rapidement.", "ok");
   } catch (err) {
     track("form_error", { reason: err instanceof TypeError ? "connexion" : "refus" });
