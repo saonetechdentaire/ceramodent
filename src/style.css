@@ -926,17 +926,13 @@ img {
   }
 }
 @media (max-width: 760px) {
-  /* Sur mobile, le dessin reste au-dessus du titre */
-  .hero__art {
-    bottom: auto;
-    height: 11rem;
-    overflow: hidden;
-  }
+  /* Sur mobile, le dessin entier, quitte à passer sous le titre (un peu plus transparent) */
   .ht--orange {
     top: -6vw;
     left: -20vw;
     width: 140vw;
     transform: rotate(-6deg);
+    opacity: 0.6;
   }
   .ht--blue {
     display: none;
