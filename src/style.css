@@ -357,6 +357,17 @@ img {
 .row p {
   margin: 0;
 }
+/* Ligne avec un schéma sous le titre (crochets du stellite) */
+.row--fig p {
+  align-self: center;
+}
+.row__fig {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  margin-top: 0.75rem;
+}
 .towns {
   color: var(--muted);
 }
