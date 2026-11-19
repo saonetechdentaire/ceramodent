@@ -24,6 +24,7 @@ export default defineConfig({
         amovible: here("prothese-amovible.html"),
         implantaire: here("prothese-implantaire.html"),
         numerique: here("empreintes-numeriques.html"),
+        beaujolais: here("laboratoire-prothese-dentaire-beaujolais.html"),
         villefranche: here("laboratoire-prothese-dentaire-villefranche-sur-saone.html"),
         macon: here("laboratoire-prothese-dentaire-macon.html"),
         ain: here("laboratoire-prothese-dentaire-val-de-saone-ain.html"),
