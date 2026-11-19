@@ -904,12 +904,12 @@ img {
   height: auto;
   max-width: none;
 }
-/* L'arcade, côté incisives, très zoomée et coupée par le bord droit (retournée) */
+/* Les molaires du haut, très zoomées, posées à la verticale et coupées par le bord droit */
 .ht--orange {
   top: 50%;
-  right: -12rem;
-  width: clamp(700px, 66vw, 1040px);
-  transform: translateY(-50%) scaleX(-1) rotate(-6deg);
+  left: calc(100% - 15rem);
+  width: clamp(1000px, 100vw, 1500px);
+  transform: translate(-50%, -50%) rotate(84deg);
 }
 .ht--blue {
   right: 34%;
@@ -926,10 +926,11 @@ img {
     overflow: hidden;
   }
   .ht--orange {
-    top: -14rem;
-    right: -3.5rem;
-    width: 300px;
-    transform: scaleX(-1) rotate(-6deg);
+    top: -1.5rem;
+    left: auto;
+    right: -5rem;
+    width: 440px;
+    transform: rotate(-8deg);
   }
   .ht--blue {
     display: none;
