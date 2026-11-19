@@ -882,3 +882,95 @@ img {
     min-width: 0;
   }
 }
+
+/* ---------- Animations ---------- */
+/* Défilement : Motion (reveal.ts). Haut de page : entrée en CSS, sans attendre le script, donc sans clignotement. */
+
+/* Mots des titres, chacun derrière un masque (découpés par reveal.ts) */
+.w {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+  vertical-align: top;
+}
+.w > span {
+  display: inline-block;
+}
+
+/* Filet du haut des listes, tracé de gauche à droite */
+.rows.is-rule {
+  position: relative;
+  border-top-color: transparent;
+}
+.rows.is-rule::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.rows.is-rule.is-in::before {
+  transform: none;
+}
+
+@keyframes rise {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(40px);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: none;
+  }
+}
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+@keyframes logo-in {
+  from {
+    opacity: 0;
+    rotate: -12deg;
+    scale: 0.85;
+  }
+}
+.hero h1,
+.legal > h1 {
+  animation: rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.05s backwards;
+}
+.hero__inner > :not(h1),
+.facts,
+.legal > h1 + p {
+  animation: enter 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s backwards;
+}
+.hero__inner > .hero__actions,
+.facts {
+  animation-delay: 0.5s;
+}
+.hero__logo {
+  animation: logo-in 1.6s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero h1,
+  .legal > h1,
+  .hero__inner > :not(h1),
+  .facts,
+  .legal > h1 + p,
+  .hero__logo {
+    animation-name: fade;
+  }
+}

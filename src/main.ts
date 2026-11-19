@@ -8,9 +8,11 @@ import "./style.css";
 import { initConsent } from "./consent.ts";
 import { initTracking } from "./tracking.ts";
 import "./form.ts";
+import { initReveal } from "./reveal.ts";
 
 initConsent();
 initTracking();
+initReveal();
 
 const year = document.getElementById("year");
 if (year) year.textContent = String(new Date().getFullYear());
