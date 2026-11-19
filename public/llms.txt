@@ -50,3 +50,7 @@ Céramodent est dirigé par M. Ossari, prothésiste dentaire depuis plus de 30 a
 - [Le laboratoire](https://ceramodent.fr/le-laboratoire.html)
 - [Guide : scan intra-oral avant envoi](https://ceramodent.fr/guide-scan-intra-oral.html)
 - [Guide : réparer, rebaser ou refaire une prothèse amovible](https://ceramodent.fr/guide-reparation-prothese-amovible.html)
+- [Guide : prothèse amovible immédiate](https://ceramodent.fr/guide-prothese-immediate.html)
+- [Guide : prothèse complète stabilisée sur implants](https://ceramodent.fr/guide-prothese-complete-stabilisee-implants.html)
+- [Guide : les étapes d'une prothèse complète](https://ceramodent.fr/guide-etapes-prothese-complete.html)
+- [Tous les guides](https://ceramodent.fr/guides.html)
