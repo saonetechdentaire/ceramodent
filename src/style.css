@@ -904,29 +904,35 @@ img {
   height: auto;
   max-width: none;
 }
+/* L'arcade, côté incisives, très zoomée et coupée par le bord droit (retournée) */
 .ht--orange {
-  top: -6%;
-  right: -9%;
-  width: min(42vw, 600px);
-  transform: rotate(-8deg);
+  top: 50%;
+  right: -12rem;
+  width: clamp(700px, 66vw, 1040px);
+  transform: translateY(-50%) scaleX(-1) rotate(-6deg);
 }
 .ht--blue {
-  right: 26%;
-  bottom: -34%;
-  width: min(22vw, 300px);
+  right: 34%;
+  bottom: -42%;
+  width: min(30vw, 420px);
+  opacity: 0.7;
   transform: rotate(18deg);
 }
 @media (max-width: 760px) {
+  /* Sur mobile, le dessin reste au-dessus du titre */
+  .hero__art {
+    bottom: auto;
+    height: 11rem;
+    overflow: hidden;
+  }
   .ht--orange {
-    top: -4rem;
-    right: -9rem;
-    width: 240px;
+    top: -14rem;
+    right: -3.5rem;
+    width: 300px;
+    transform: scaleX(-1) rotate(-6deg);
   }
   .ht--blue {
-    right: -5rem;
-    bottom: -6rem;
-    width: 160px;
-    opacity: 0.6;
+    display: none;
   }
 }
 
