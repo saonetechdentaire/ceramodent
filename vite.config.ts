@@ -13,6 +13,8 @@ export default defineConfig({
   server: {
     port: 5190,
     proxy: { "/api": "http://localhost:4000" },
+    // Le nom du dossier partagé gêne la surveillance des fichiers sous Windows : on vérifie à intervalles
+    watch: { usePolling: true, interval: 300 },
   },
   build: {
     rollupOptions: {

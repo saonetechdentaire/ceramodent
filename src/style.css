@@ -897,44 +897,36 @@ img {
   inset: 0;
   pointer-events: none;
 }
-/* Une trame de points, découpée par le dessin de l'arcade (masque) */
+/* Deux dents en tramage, très grandes et coupées par les bords */
 .ht {
   position: absolute;
   display: block;
-  aspect-ratio: 62.65 / 74.21;
-  background-image: radial-gradient(circle, currentColor 0 40%, transparent 46%);
-  background-size: 7px 7px;
-  -webkit-mask: var(--shape) center / contain no-repeat;
-  mask: var(--shape) center / contain no-repeat;
-  -webkit-mask-mode: luminance;
-  mask-mode: luminance;
+  height: auto;
+  max-width: none;
 }
 .ht--orange {
-  --shape: url("/graphics/arcade-haut.svg");
-  top: 50%;
-  right: max(-260px, -16vw);
-  width: min(60vw, 780px);
-  color: var(--orange);
-  transform: translateY(-50%) rotate(-14deg);
+  top: -14%;
+  right: -17%;
+  width: min(62vw, 900px);
+  transform: rotate(-8deg);
 }
 .ht--blue {
-  --shape: url("/graphics/arcade-bas.svg");
-  right: 30%;
-  bottom: -38%;
-  width: min(30vw, 400px);
-  color: #6f78e6;
-  opacity: 0.75;
-  transform: rotate(150deg);
+  right: 26%;
+  bottom: -34%;
+  width: min(30vw, 440px);
+  transform: rotate(18deg);
 }
 @media (max-width: 760px) {
   .ht--orange {
-    top: -5rem;
-    right: -10rem;
-    width: 320px;
-    transform: rotate(-14deg);
+    top: -4rem;
+    right: -9rem;
+    width: 340px;
   }
   .ht--blue {
-    display: none;
+    right: -5rem;
+    bottom: -6rem;
+    width: 220px;
+    opacity: 0.6;
   }
 }
 
