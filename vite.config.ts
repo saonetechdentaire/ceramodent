@@ -29,6 +29,8 @@ export default defineConfig({
         ain: here("laboratoire-prothese-dentaire-val-de-saone-ain.html"),
         zircone: here("couronne-zircone.html"),
         stellite: here("stellite.html"),
+        complete: here("prothese-complete.html"),
+        rebasage: here("rebasage-prothese-dentaire.html"),
         laboratoire: here("le-laboratoire.html"),
         guideScan: here("guide-scan-intra-oral.html"),
         guideAmovible: here("guide-reparation-prothese-amovible.html"),
