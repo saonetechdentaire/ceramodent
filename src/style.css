@@ -905,27 +905,27 @@ img {
   max-width: none;
 }
 .ht--orange {
-  top: -14%;
-  right: -17%;
-  width: min(62vw, 900px);
+  top: -6%;
+  right: -9%;
+  width: min(42vw, 600px);
   transform: rotate(-8deg);
 }
 .ht--blue {
   right: 26%;
   bottom: -34%;
-  width: min(30vw, 440px);
+  width: min(22vw, 300px);
   transform: rotate(18deg);
 }
 @media (max-width: 760px) {
   .ht--orange {
     top: -4rem;
     right: -9rem;
-    width: 340px;
+    width: 240px;
   }
   .ht--blue {
     right: -5rem;
     bottom: -6rem;
-    width: 220px;
+    width: 160px;
     opacity: 0.6;
   }
 }
