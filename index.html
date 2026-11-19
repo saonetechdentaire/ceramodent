@@ -191,6 +191,7 @@
     </script>
 
     <script type="module" src="/src/main.ts"></script>
+    <link rel="preload" href="/graphics/arcade-trame.svg" as="image" fetchpriority="high" />
   </head>
   <body>
     <a href="#contenu" class="skip">Aller au contenu</a>
@@ -215,7 +216,7 @@
     <main id="contenu">
       <section class="hero hero--art">
         <div class="hero__art" aria-hidden="true">
-          <img class="ht ht--orange" src="/graphics/arcade-trame.svg" alt="" width="450" height="220" />
+          <img class="ht ht--orange" fetchpriority="high" src="/graphics/arcade-trame.svg" alt="" width="450" height="220" />
           <img class="ht ht--blue" src="/graphics/trame-bleue.svg" alt="" width="329" height="374" />
         </div>
         <div class="wrap hero__inner">
