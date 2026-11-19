@@ -31,6 +31,7 @@ export default defineConfig({
         zircone: here("couronne-zircone.html"),
         stellite: here("stellite.html"),
         complete: here("prothese-complete.html"),
+        gouttieres: here("gouttieres-dentaires.html"),
         rebasage: here("rebasage-prothese-dentaire.html"),
         laboratoire: here("le-laboratoire.html"),
         guideScan: here("guide-scan-intra-oral.html"),
