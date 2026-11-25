@@ -818,7 +818,7 @@ img {
   flex-wrap: wrap;
 }
 
-/* ---------- Bandeau de consentement (mesure d'audience, voir consent.ts) ---------- */
+/* ---------- Bandeau de consentement (mesure d'audience et des annonces, voir consent.ts) ---------- */
 
 .consent {
   position: fixed;
@@ -854,9 +854,30 @@ img {
   margin-bottom: 0.25rem !important;
   font: 700 1.1rem var(--title);
 }
-/* « Refuser » et « Accepter » : même taille, même importance (CNIL) */
+/* « Choisir » : une case par finalité */
+.consent__choices {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+.consent__choices[hidden] {
+  display: none;
+}
+.consent__choices label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+.consent__choices input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--orange);
+}
+/* « Tout refuser » et « Tout accepter » : même taille, même importance (CNIL) */
 .consent__actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.6rem;
 }
 .consent__actions .btn {
@@ -877,9 +898,21 @@ img {
   .consent__actions {
     width: 100%;
   }
+  .consent__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
   .consent__actions .btn {
-    flex: 1;
     min-width: 0;
+    padding-inline: 0.5rem;
+  }
+  /* « Tout refuser » et « Tout accepter » côte à côte, « Choisir » en dessous */
+  .consent__actions [data-consent="all"] {
+    grid-row: 1;
+    grid-column: 2;
+  }
+  .consent__actions [data-consent="pick"] {
+    grid-column: 1 / -1;
   }
 }
 
